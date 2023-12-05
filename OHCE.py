@@ -1,6 +1,7 @@
 import time
 
 hour = time.localtime().tm_hour
+lang = 'en'  # OU 'en'
 
 time = 'jour'
 if hour > 18:
@@ -9,16 +10,28 @@ if hour > 18:
 
 def getHello():
     if time == 'jour':
-        return 'Bonjour !'
+        if lang == 'fr':
+            return 'Bonjour !'
+        else:
+            return 'Hello !'
     elif time == 'night':
-        return 'Bonsoir !'
+        if lang == 'fr':
+            return 'Bonsoir !'
+        else:
+            return 'Good evening !'
 
 
 def getGoodBye():
     if time == 'jour':
-        return 'Bonne journée !'
+        if lang == 'fr':
+            return 'Bonne journée !'
+        else:
+            return 'Have a good day !'
     elif time == 'night':
-        return 'Bonne soirée !'
+        if lang == 'fr':
+            return 'Bonne soirée !'
+        else:
+            return 'Have a good evening !'
 
 
 print(getHello())
@@ -30,9 +43,16 @@ def est_palindrome(mot):
     return mot == mot[::-1]
 
 
-sentence = input('Ecrivez quelque chose : ')
+inputSentence = 'Ecrivez quelque chose : '
+if lang != inputSentence:
+    inputSentence = 'Write something : '
+
+sentence = input(inputSentence)
 print(sentence)
 if (est_palindrome(sentence)):
-    print('Bien dit !')
+    if lang == 'fr':
+        print('Bien dit !')
+    else:
+        print('Well said !')
 
 print(getGoodBye())
