@@ -43,13 +43,17 @@ def est_palindrome(mot):
     return mot == mot[::-1]
 
 
+def miroir(texte):
+    return texte[::-1]
+
+
 inputSentence = 'Ecrivez quelque chose : '
 if lang != inputSentence:
     inputSentence = 'Write something : '
 
 sentence = input(inputSentence)
-print(sentence)
-if (est_palindrome(sentence)):
+print(miroir(sentence))
+if est_palindrome(sentence):
     if lang == 'fr':
         print('Bien dit !')
     else:
