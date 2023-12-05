@@ -1,7 +1,8 @@
 import time
+import unittest
 
 hour = time.localtime().tm_hour
-lang = 'en'  # OU 'en'
+lang = 'fr'  # OU 'en'
 
 time = 'jour'
 if hour > 18:
@@ -46,6 +47,17 @@ def est_palindrome(mot):
 def miroir(texte):
     return texte[::-1]
 
+class TestMiroir(unittest.TestCase):
+
+    def test_miroir(self):
+        entree = "Bonjour"
+        sortie_attendue = "ruojnoB"
+        resultat = miroir(entree)
+        self.assertEqual(resultat, sortie_attendue)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 inputSentence = 'Ecrivez quelque chose : '
 if lang != inputSentence:
