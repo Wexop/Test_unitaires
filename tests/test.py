@@ -1,6 +1,7 @@
 import unittest
 
-from src.OHCE import miroir, getHello, getGoodBye, printPalindrome
+from src.OHCE import getHello, getGoodBye, printPalindrome
+from tests.utilities.detecteutPalindromeBuilder import DétecteurPalindromeBuilder
 
 testNonPalindrome = ["test", "clip"]
 
@@ -9,7 +10,8 @@ class TestMiroir(unittest.TestCase):
     def test_miroir(self):
         for chaîne in testNonPalindrome:
             with (self.subTest(chaîne)):
-                résultat = miroir(chaîne)
+                détecteur = DétecteurPalindromeBuilder().build()
+                résultat = détecteur.détecter(chaîne)
 
                 attendu = chaîne[::-1]
                 self.assertIn(attendu, résultat)

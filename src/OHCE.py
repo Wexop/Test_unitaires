@@ -51,7 +51,7 @@ inputSentence = 'Ecrivez quelque chose : '
 if lang != 'fr':
     inputSentence = 'Write something : '
 
-sentence = input(inputSentence)
+sentence = "Bonjour"
 print(miroir(sentence))
 
 
