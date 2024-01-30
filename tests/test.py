@@ -2,14 +2,17 @@ import unittest
 
 from src.OHCE import miroir, getHello, getGoodBye, printPalindrome
 
+testNonPalindrome = ["test", "clip"]
 
 class TestMiroir(unittest.TestCase):
 
     def test_miroir(self):
-        entree = "Bonjour"
-        sortie_attendue = "ruojnoB"
-        resultat = miroir(entree)
-        self.assertEqual(resultat, sortie_attendue)
+        for chaîne in testNonPalindrome:
+            with (self.subTest(chaîne)):
+                résultat = miroir(chaîne)
+
+                attendu = chaîne[::-1]
+                self.assertIn(attendu, résultat)
 
     def test_bonjour(self):
         result = getHello()
