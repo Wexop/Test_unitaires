@@ -11,9 +11,9 @@ class DetecteurPalindrome:
         mot = mot.replace(" ", "")
         miroir = mot[::-1]
 
-        début = ('Bonjour' + os.linesep + miroir + os.linesep)
+        début = (self.__langue.bonjour() + os.linesep + miroir + os.linesep)
 
         return ((début + self.__langue.féliciter()
                  if mot == miroir
                  else début)
-                + "Au revoir")
+                + self.__langue.auRevoir())
