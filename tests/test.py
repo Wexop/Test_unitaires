@@ -1,6 +1,6 @@
 import unittest
 
-from OHCE import miroir, getHello, getGoodBye, printPalindrome
+from src.OHCE import miroir, getHello, getGoodBye, printPalindrome
 
 
 class TestMiroir(unittest.TestCase):
