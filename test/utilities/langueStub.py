@@ -1,9 +1,9 @@
 class LangueStub:
     def féliciter(self):
-        return "Feliciter"
+        return ""
 
     def bonjour(self):
-        return "Bonjour"
+        return ""
 
     def auRevoir(self):
-        return "AuRevoir"
+        return ""
