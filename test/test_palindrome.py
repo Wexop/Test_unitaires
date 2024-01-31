@@ -1,11 +1,11 @@
 import os
 import unittest
 
+from momentDeLaJournée import MomentDeLaJournée
 from src.langueAnglaise import LangueAnglaise
 from src.langueFrançaise import LangueFrançaise
 from utilities.detecteutPalindromeBuilder import DétecteurPalindromeBuilder
 from utilities.langueSpy import LangueSpy
-from utilities.langueStub import LangueStub
 
 testNonPalindrome = ["test", "clip"]
 
@@ -15,7 +15,7 @@ class TestMiroir(unittest.TestCase):
     def test_miroir(self):
         for chaîne in testNonPalindrome:
             with (self.subTest(chaîne)):
-                détecteur = DétecteurPalindromeBuilder().ayantPourLangue(LangueStub()).build()
+                détecteur = DétecteurPalindromeBuilder().build()
                 résultat = détecteur.détecter(chaîne)
 
                 attendu = chaîne[::-1]
@@ -42,19 +42,32 @@ class TestMiroir(unittest.TestCase):
         for chaîne in testNonPalindrome:
             with self.subTest(chaîne):
                 langue = LangueSpy()
-                résultat = DétecteurPalindromeBuilder().ayantPourLangue(LangueStub()).build().détecter(chaîne)
+                résultat = DétecteurPalindromeBuilder().build().détecter(chaîne)
 
                 self.assertFalse(langue.félicitationsConsultées())
 
     def test_bonjour(self):
-        cas = [[LangueFrançaise(), 'Bonjour'], [LangueAnglaise(), 'Hello']]
+        cas = [
+            [LangueFrançaise(), 'Bonjour', MomentDeLaJournée.INCONNU],
+            [LangueFrançaise(), 'Bonjour', MomentDeLaJournée.MATIN],
+            [LangueFrançaise(), 'Bonjour', MomentDeLaJournée.APRES_MIDI],
+            [LangueFrançaise(), 'Bonsoir', MomentDeLaJournée.SOIR],
+            [LangueFrançaise(), 'Bonsoir', MomentDeLaJournée.NUIT],
+            [LangueAnglaise(), 'Hello', MomentDeLaJournée.INCONNU],
+            [LangueAnglaise(), 'Good Morning', MomentDeLaJournée.MATIN],
+            [LangueAnglaise(), 'Good Afternoon', MomentDeLaJournée.APRES_MIDI],
+            [LangueAnglaise(), 'Good Evening', MomentDeLaJournée.SOIR],
+            [LangueAnglaise(), 'Good Night', MomentDeLaJournée.NUIT],
+        ]
 
         for paramètres in cas:
             with (self.subTest(paramètres[0])):
                 langue = paramètres[0]
+                moment = paramètres[2]
                 chaîne = 'test'
 
-                résultat = DétecteurPalindromeBuilder().ayantPourLangue(langue).build().détecter(chaîne)
+                résultat = DétecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentDeLaJournée(
+                    moment).build().détecter(chaîne)
 
                 bonjour = paramètres[1]
                 premiere_ligne = résultat.split(os.linesep)[0]
