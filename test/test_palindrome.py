@@ -3,8 +3,9 @@ import unittest
 
 from src.langueAnglaise import LangueAnglaise
 from src.langueFrançaise import LangueFrançaise
-from tests.utilities.detecteutPalindromeBuilder import DétecteurPalindromeBuilder
-from tests.utilities.langueSpy import LangueSpy
+from utilities.detecteutPalindromeBuilder import DétecteurPalindromeBuilder
+from utilities.langueSpy import LangueSpy
+from utilities.langueStub import LangueStub
 
 testNonPalindrome = ["test", "clip"]
 
@@ -14,7 +15,7 @@ class TestMiroir(unittest.TestCase):
     def test_miroir(self):
         for chaîne in testNonPalindrome:
             with (self.subTest(chaîne)):
-                détecteur = DétecteurPalindromeBuilder().ayantPourLangue(LangueFrançaise()).build()
+                détecteur = DétecteurPalindromeBuilder().ayantPourLangue(LangueStub()).build()
                 résultat = détecteur.détecter(chaîne)
 
                 attendu = chaîne[::-1]
@@ -41,7 +42,7 @@ class TestMiroir(unittest.TestCase):
         for chaîne in testNonPalindrome:
             with self.subTest(chaîne):
                 langue = LangueSpy()
-                résultat = DétecteurPalindromeBuilder().ayantPourLangue(LangueFrançaise()).build().détecter(chaîne)
+                résultat = DétecteurPalindromeBuilder().ayantPourLangue(LangueStub()).build().détecter(chaîne)
 
                 self.assertFalse(langue.félicitationsConsultées())
 
@@ -54,7 +55,6 @@ class TestMiroir(unittest.TestCase):
                 chaîne = 'test'
 
                 résultat = DétecteurPalindromeBuilder().ayantPourLangue(langue).build().détecter(chaîne)
-
 
                 bonjour = paramètres[1]
                 premiere_ligne = résultat.split(os.linesep)[0]
