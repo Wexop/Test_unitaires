@@ -2,7 +2,7 @@ class LangueStub:
     def féliciter(self):
         return ""
 
-    def bonjour(self, moment):
+    def bonjour(self):
         return ""
 
     def auRevoir(self):

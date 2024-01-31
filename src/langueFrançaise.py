@@ -1,13 +1,8 @@
-from momentDeLaJournée import MomentDeLaJournée
-
-
 class LangueFrançaise:
     def féliciter(self):
         return "Bien dit !"
 
-    def bonjour(self, moment):
-        if moment == MomentDeLaJournée.SOIR or moment == MomentDeLaJournée.NUIT:
-            return "Bonsoir"
+    def bonjour(self):
         return "Bonjour"
 
     def auRevoir(self):
